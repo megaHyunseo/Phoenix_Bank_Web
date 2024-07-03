@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OCR Kiosk</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <h1>Welcome to the OCR Kiosk</h1>
+    <h2>Current Distance: <span id="distance">{{ distance }}</span> cm</h2>
+    <form action="/extract_and_save" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Upload</button>
+    </form>
+    <script>
+        var socket = io();
+
+        socket.on('sensor_update', function(data) {
+            document.getElementById('distance').innerText = data.distance;
+        });
+
+        socket.on('redirect', function(data) {
+            window.location.href = data.url;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Document</title>
+</head>
+<body>
+    <h1>Upload Your Document</h1>
+    <form action="/extract_and_save" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Upload</button>
+    </form>
+    {% if name and registration_number %}
+        <h2>OCR Result:</h2>
+        <p><strong>Name:</strong> {{ name }}</p>
+        <p><strong>Registration Number:</strong> {{ registration_number }}</p>
+    {% endif %}
+</body>
+</html>
